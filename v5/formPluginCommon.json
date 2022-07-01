@@ -1,0 +1,47 @@
+{
+  "grid": [
+    { "id": "p1", "xs": 6, "class": "main", "table": "units" },
+    { "id": "p2", "xs": 6, "class": "main", "table": "units" },
+    { "id": "p9", "xs": 12, "class": "main", "table": "unitsTreeTable", "height": "fill" }
+  ],
+
+  "spacing": 10,
+
+  "p1": [
+    { "prop": "posgresql_options", "title": "Подключение к PostgreSQL", "type": "header", "size": "h6" },
+    { "prop": "active", "title": "Active", "type": "text", "hide": "1==1" },
+    { "prop": "host", "title": "Host", "type": "input", "default": "localhost" },
+    { "prop": "port", "title": "Port", "type": "input", "default": "5432" },
+    { "prop": "user", "title": "User", "type": "input", "default": "ih_user" },
+    { "prop": "password", "title": "Password", "type": "password", "default": "ih_password" },
+    { "prop": "database", "title": "Database", "type": "input", "default": "ihdb" }
+  ],
+
+  "p2": [
+    {"prop": "delay", "title": "Request delay (ms)", "type": "input", "default": "1000" },
+    {
+      "prop": "restarttime",
+      "title": "$Unit_Restarttime",
+      "type": "number",
+      "default": 5
+    },
+    { "prop": "loglevel", "title": "$LogLevel", "type": "droplist", "data": "loglevelList" }
+  ],
+
+  "p9": [
+    {
+      "title": "",
+      "type": "table",
+      "prop": "unitsTreeTable",
+
+      "columns": [
+        { "prop": "name", "title": "ID", "type": "text", "width": 150 },
+        { "prop": "state", "title": "Состояние", "type": "text", "width": 150 },
+        { "prop": "laststart", "title": "Время запуска", "type": "text", "width": 150 },
+        { "prop": "laststop", "title": "Время останова", "type": "text", "width": 150 },
+        { "prop": "uptime", "title": "Uptime", "type": "text", "width": 150 },
+        { "prop": "error", "title": "Ошибка", "type": "text", "width": 250 }
+      ]
+    }
+  ]
+}

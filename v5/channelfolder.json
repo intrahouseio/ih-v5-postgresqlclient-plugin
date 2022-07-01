@@ -1,0 +1,31 @@
+{
+  "grid": [
+    { "id": "p1", "xs": 4, "class": "main", "table": "devhard" },
+    { "id": "p2", "xs": 4, "class": "main", "table": "devhard", "hide": true },
+    { "id": "p3", "xs": 4, "class": "main", "table": "devhard" },
+    { "id": "p4", "xs": 12, "class": "main", "table": "devhard", "height":240 },
+    { "id": "pscript", "xs": 12, "class": "main", "table": "devhard", "height":"fill", "padding":4, "hide": "!data.p3.usescript"  }
+  ],
+  "spacing": 4,
+
+  "p1": [
+    { "prop": "chan", "title": "$Name", "type": "input" }
+  ],
+
+  "p2": [
+    { "prop": "interval", "title": "Интервал опроса, сек", "type": "input"}
+    ],
+    
+  "p3": [
+    { "prop": "usescript", "title": "Использовать скрипт для обработки результата", "type": "cb" }
+  ],
+
+  "p4": [
+    { "prop": "req", "title": "$Request", "type":  "textarea" }
+  ],
+  
+  "pscript": [
+    { "prop": "channelscript", "title": "Code", "type": "script" }
+  ]
+ 
+}

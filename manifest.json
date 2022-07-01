@@ -1,0 +1,35 @@
+{
+  "name": "postgresqlclient",
+  "module": "index.js",
+  "single": 0,
+  "smart": 1,
+  "restartOnChannelsChange": 1,
+  
+  "channel_folder_popup": {
+    "add":[
+      { "id": "channel_folder", "title": "$NewRequest" },
+      { "id": "channel", "title": "$NewChannel" }
+    ],
+ 
+    "copypaste":true,
+    "delete":true
+  },
+
+  "channel_popup": {
+    "add":[
+      { "id": "channel", "title": "$NewChannel" }
+    ],
+    "copypaste":true,
+    "delete":true
+  },
+
+  "default_channel": {
+    "r":1,
+    "chan":"ch_1"
+  },
+
+  "default_channel_folder": {
+    "r":1,
+    "chan":"$NewRequest"
+  }
+}

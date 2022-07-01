@@ -1,0 +1,14 @@
+{
+  "grid": [
+    { "id": "p1", "xs": 6, "class": "main", "table": "devhard" },
+    { "id": "p9", "xs": 6, "class": "main", "table": "onechannelrtTable" }
+  ],
+  "spacing": 4,
+
+  "p1": [{ "prop": "chan", "title": "Channel ID", "type": "input" }],
+  "p9": [
+    { "prop": "realtime_chan_str", "title": "Канал", "type": "text"},
+    { "prop": "realtime_dev_str", "title": "Устройство", "type": "text"}
+  ]
+
+}
