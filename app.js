@@ -4,6 +4,7 @@
 
 const util = require('util');
 const client = require('./lib/client');
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = async function(plugin) {
 
@@ -25,9 +26,10 @@ module.exports = async function(plugin) {
     plugin.log('Error' + error)
   }
   let currentReqIdx = -1;
-  setInterval(next, delay);
+  sendNext();
+  //setInterval(next, delay);
 
-  async function next() {
+  async function sendNext() {
     let reqResult;
     let scriptResult;
     try {
@@ -61,6 +63,11 @@ module.exports = async function(plugin) {
     } catch (e) {
       plugin.log('ERROR: ' + util.inspect(e));
     }
+
+    await sleep(delay || 1000);
+    setImmediate(() => {
+      sendNext();
+    });
   }
 
   async function runReq(sqlReq) {
