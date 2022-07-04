@@ -24,6 +24,7 @@ module.exports = async function(plugin) {
     await client.createPoolToDatabase(options);
   } catch (error) {
     plugin.log('Error' + error)
+    process.exit(0);
   }
   let currentReqIdx = -1;
   sendNext();
@@ -43,7 +44,7 @@ module.exports = async function(plugin) {
 
       // Обработать результат с помощью функции scriptfile
       if (reqResult && item.fn) {
-        scriptResult = item.fn(reqResult);
+        scriptResult = item.fn(reqResult, plugin);
       }
       plugin.log('scriptResult=' + util.inspect(scriptResult));
 
