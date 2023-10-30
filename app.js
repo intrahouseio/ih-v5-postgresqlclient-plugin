@@ -8,7 +8,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = async function(plugin) {
 
-  plugin.log('Options' + util.inspect(plugin.params.data));
+  plugin.log('Options' + util.inspect(plugin.params.data), 1);
   const delay = plugin.params.data.delay;
   const options = {
     host: plugin.params.data.host,
@@ -17,13 +17,14 @@ module.exports = async function(plugin) {
     password: plugin.params.data.password,
     database: plugin.params.data.database
   }
+  plugin.log('Channels=' + util.inspect(plugin.channels.data, null, 4), 1);
   const reqs = prepare(plugin.channels.data);
-  plugin.log('Reqs=' + util.inspect(reqs, null, 4));
+  plugin.log('Reqs=' + util.inspect(reqs, null, 4), 1);
 
   try {
     await client.createPoolToDatabase(options);
   } catch (error) {
-    plugin.log('Error' + error)
+    plugin.log('Error' + error, 1)
     process.exit(0);
   }
   let currentReqIdx = -1;
@@ -40,13 +41,13 @@ module.exports = async function(plugin) {
 
       // Выполнить запрос
       reqResult = await runReq(item.req);
-      plugin.log('reqResult=' + util.inspect(reqResult));
+      plugin.log('reqResult=' + util.inspect(reqResult),1);
 
       // Обработать результат с помощью функции scriptfile
       if (reqResult && item.fn) {
         scriptResult = item.fn(reqResult, plugin);
       }
-      plugin.log('scriptResult=' + util.inspect(scriptResult));
+      plugin.log('scriptResult=' + util.inspect(scriptResult),1);
 
       const data = [];
       if (scriptResult && Array.isArray(item.children)) {
@@ -59,10 +60,10 @@ module.exports = async function(plugin) {
       }
 
       // Отправить на сервер
-      plugin.log('data=' + util.inspect(data));
+      plugin.log('data=' + util.inspect(data),1);
       if (data.length) plugin.sendData(data);
     } catch (e) {
-      plugin.log('ERROR: ' + util.inspect(e));
+      plugin.log('ERROR: ' + util.inspect(e), 1);
     }
 
     await sleep(delay || 1000);
@@ -80,7 +81,7 @@ module.exports = async function(plugin) {
   function prepare(data) {
     const folders = [];
     const children = {};
-    plugin.log('prepare data=' + util.inspect(data, null, 4));
+    plugin.log('prepare data=' + util.inspect(data, null, 4), 1);
 
     data.forEach(item => {
       if (!item.parentid) {
@@ -103,7 +104,7 @@ module.exports = async function(plugin) {
       let fn = require(item.scriptfile);
       return fn;
     } catch (e) {
-      plugin.log(util.inspect(item) + ' Script error ' + util.inspect(e));
+      plugin.log(util.inspect(item) + ' Script error ' + util.inspect(e), 1);
       return '';
     }
   }
