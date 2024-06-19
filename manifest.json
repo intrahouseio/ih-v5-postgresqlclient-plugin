@@ -3,6 +3,7 @@
   "module": "index.js",
   "single": 0,
   "smart": 1,
+  "innerId":1,
   "restartOnChannelsChange": 1,
   
   "channel_folder_popup": {

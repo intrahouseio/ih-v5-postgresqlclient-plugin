@@ -72,8 +72,20 @@ module.exports = async function(plugin) {
     });
   }
 
+  plugin.onCommand(async (message) => {
+    plugin.log('Get command ' + util.inspect(message), 1);
+    let result = {};
+    if (message.command == 'SQL') {
+      const reqResult = await runReq(String(message.data));
+      result = { reqResult, myStr: 'OK', type: 'command', unit: message.unit, uuid: message.uuid, sender: message.sender };  
+    } else {
+      result = { myStr: 'No Such Command', type: 'command', unit: message.unit, uuid: message.uuid, sender: message.sender };
+    }
+    plugin.sendResponse(result, 1);
+  });
+
   async function runReq(sqlReq) {
-    let ts = Date.now();
+    //let ts = Date.now();
     const result = await client.query(sqlReq);
     return result
   }
