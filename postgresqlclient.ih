@@ -3,5 +3,5 @@
     "description":"Плагин SQL запросов к PostgreSQL",
     "comment":"файл .ih используется для опеределения версии и обновлений.",
     "cross":true,
-	"version":"5.5.3"
+	"version":"5.5.4"
 }

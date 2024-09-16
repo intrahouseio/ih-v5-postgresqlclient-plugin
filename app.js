@@ -54,7 +54,7 @@ module.exports = async function(plugin) {
         // Подставить из children
         item.children.forEach(child => {
           if (scriptResult[child.id] != undefined) {
-            data.push({ id: child.id, value: scriptResult[child.id] });
+            data.push({ id: child.chanId, value: scriptResult[child.id], title:child.id });
           }
         });
       }
